@@ -2,10 +2,12 @@
 Patch of @types/react allowing sharing style sheets among React and ReactNative
 
 ## Installation
+
+Instead of ```npm install --save-dev @types/react``` use:
+
 ```sh
 npm install --save-dev "git+https://github.com/PavelPZ/reactx-types-react-patch.git"
 ```
-Don't use ```npm install --save-dev @types/react```
 
 #### 1. ```CSSProperties.fontWeight``` change
 ... to be compatible with ReactNative.TextStyle.fontWeight
@@ -33,16 +35,16 @@ type NativeCSS = RN.TextStyle | RN.ViewStyle | RN.ImageStyle
 type CommonCSS<TNative extends NativeCSS> = TakeFrom<TNative, keyof TNative>
 
 //stylesheet def
-const xxx: CommonCSS<RN.TextStyle> = {
+const style: CommonCSS<RN.TextStyle> = {
   fontWeight: '300',
   color: 'black'
 }
 
 //using in RN
-const txt = <Text style={xxx}>Hallo world</Text>
+const txt = <Text style={style}>Hallo world</Text>
 
 //using in react
-const span = <span style={xxx}>Hallo world</span>
+const span = <span style={style}>Hallo world</span>
 ```
 
 
