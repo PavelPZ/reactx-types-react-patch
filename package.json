@@ -1,0 +1,24 @@
+{
+  "name": "@types/react",
+  "version": "0.1.1",
+  "description": "React native compatible patch of TypeScript definitions for React",
+  "registry": "npm",
+  "main": "",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PavelPZ/reactx-types-react-patch.git"
+  },
+  "keywords": [
+    "react",
+    "react-native",
+    "icons"
+  ],
+  "author": "pzika@langmaster.cz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PavelPZ/reactx-types-react-patch/issues"
+  },
+  "homepage": "https://github.com/PavelPZ/reactx-types-react-patch#readme",
+  "readme": "https://github.com/PavelPZ/reactx-types-react-patch#readme"
+}
