@@ -1,5 +1,5 @@
 # reactx-types-react-patch
-Patch of @types/react allowing sharing style sheets among React and ReactNative
+Patch of @types/react allowing limited sharing of style sheets among React and ReactNative
 
 ## Installation
 
@@ -16,10 +16,10 @@ fontWeight?: "normal" | "bold" | "100" | "200" | "300" | "400" | "500" | "600" |
 ```
 
 #### 2. ```CSSProperties``` is separated to two interfaces (CSSPropertiesLow and CSSProperties)
-- ```CSSPropertiesLow``` does not contain the following props: 
+- ```CSSPropertiesLow``` does not contain the following props 
 ```
-transform?: CSSWideKeyword | any;
-[propertyName: string]: any;
+transform?: CSSWideKeyword | any; //removed because "transform" rule definition is very different in RN and React
+[propertyName: string]: any; //removed because "keyof CSSProperties" returns unusable "string" result
 ```
 - ```CSSProperties``` looks like
 ```
@@ -32,25 +32,32 @@ interface CSSProperties extends CSSProperties {
 --------------------------
 
 
-These changes enable sharing of style sheets, e.g.
+These changes enable limited sharing of style sheets, e.g.
 
 ```
 // type definition
 type TakeFrom<T, K extends keyof T> = {[P in K]: T[P]}
 type NativeCSS = RN.TextStyle | RN.ViewStyle | RN.ImageStyle
-type CommonCSS<TNative extends NativeCSS> = TakeFrom<TNative, CSSPropertiesLow & keyof TNative>
+type CommonCSS<TNative extends NativeCSS> = TakeFrom<TNative, keyof CSSPropertiesLow & keyof TNative>
 
 //stylesheet def
-const style: CommonCSS<RN.TextStyle> = {
+const style: CommonCSS<RN.TextStyle> = { 
   fontWeight: '300',
   color: 'black'
 }
 
+const style2: CommonCSS<RN.ViewStyle> = {
+  marginTop: 30;
+}
+
+
 //using in RN
 const txt = <Text style={style}>Hallo world</Text>
+const view = <View style={style2}/>
 
 //using in react
 const span = <span style={style}>Hallo world</span>
+const div = <div style={style2}/>
 ```
 
 
