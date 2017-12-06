@@ -15,13 +15,19 @@ npm install --save-dev "git+https://github.com/PavelPZ/reactx-types-react-patch.
 fontWeight?: "normal" | "bold" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
 ```
 
-#### 2. ```CSSProperties``` is separated to two interfaces
-```CSSPropertiesLow``` and ```CSSProperties```. CSSPropertiesLow does not contain followingthe  props: 
+#### 2. ```CSSProperties``` is separated to two interfaces (CSSPropertiesLow and CSSProperties)
+- ```CSSPropertiesLow``` does not contain the following props: 
 ```
 transform?: CSSWideKeyword | any;
 [propertyName: string]: any;
 ```
-
+- ```CSSProperties``` looks like
+```
+interface CSSProperties extends CSSProperties {
+  transform?: CSSWideKeyword | any;
+  [propertyName: string]: any;
+}
+```
 
 --------------------------
 
@@ -32,7 +38,7 @@ These changes enable sharing of style sheets, e.g.
 // type definition
 type TakeFrom<T, K extends keyof T> = {[P in K]: T[P]}
 type NativeCSS = RN.TextStyle | RN.ViewStyle | RN.ImageStyle
-type CommonCSS<TNative extends NativeCSS> = TakeFrom<TNative, keyof TNative>
+type CommonCSS<TNative extends NativeCSS> = TakeFrom<TNative, CSSPropertiesLow & keyof TNative>
 
 //stylesheet def
 const style: CommonCSS<RN.TextStyle> = {
