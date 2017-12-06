@@ -1,5 +1,5 @@
 # reactx-types-react-patch
-Patch of @types/react to be more suitable for using in both React and ReactNative
+Patch of @types/react allowing sharing style sheets among React and ReactNative
 
 
 
