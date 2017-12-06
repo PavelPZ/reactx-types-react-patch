@@ -29,16 +29,16 @@ type NativeCSS = RN.TextStyle | RN.ViewStyle | RN.ImageStyle
 type CommonCSS<TNative extends NativeCSS> = TakeFrom<TNative, keyof TNative>
 
 //stylesheet def
-const style: CommonCSS<RN.TextStyle> = {
-  fontWeight:'300'
-  color:'black'
+const xxx: CommonCSS<RN.TextStyle> = {
+  fontWeight: '300',
+  color: 'black'
 }
 
 //using in RN
-<Text style={style}>Hallo world</Text>
+const txt = <Text style={xxx}>Hallo world</Text>
 
 //using in react
-<span style={style}>Hallo world</span>
+const span = <span style={xxx}>Hallo world</span>
 ```
 
 
