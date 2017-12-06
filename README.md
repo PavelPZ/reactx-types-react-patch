@@ -1,7 +1,11 @@
 # reactx-types-react-patch
 Patch of @types/react allowing sharing style sheets among React and ReactNative
 
-
+## Installation
+```sh
+npm install --save-dev "git+https://github.com/PavelPZ/reactx-types-react-patch.git"
+```
+Don't use ```npm install --save-dev @types/react```
 
 #### 1. ```CSSProperties.fontWeight``` change
 ... to be compatible with ReactNative.TextStyle.fontWeight
