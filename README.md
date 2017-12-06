@@ -1,5 +1,5 @@
 # reactx-types-react-patch
-Patch of @types/react allowing limited sharing of style sheets among React and ReactNative
+Patch of @types/react which allows  limited sharing of style sheets among React and ReactNative
 
 ## Installation
 
@@ -9,21 +9,23 @@ Instead of ```npm install --save-dev @types/react``` use:
 npm install --save-dev "git+https://github.com/PavelPZ/reactx-types-react-patch.git"
 ```
 
-#### 1. ```CSSProperties.fontWeight``` change
-... to be compatible with ReactNative.TextStyle.fontWeight
+## @types/react changes
+
+#### 1. ```CSSProperties.fontWeight```
+... to be compatible with ReactNative.TextStyle.fontWeight, fontWeight looks as follows 
 ```
 fontWeight?: "normal" | "bold" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
 ```
 
 #### 2. ```CSSProperties``` is separated to two interfaces (CSSPropertiesLow and CSSProperties)
-- ```CSSPropertiesLow``` does not contain the following props 
+- ```CSSPropertiesLow``` contains all ```CSSProperties``` props except for:
 ```
 transform?: CSSWideKeyword | any; //removed because "transform" rule definition is very different in RN and React
-[propertyName: string]: any; //removed because "keyof CSSProperties" returns unusable "string" result
+[propertyName: string]: any; //removed because "keyof CSSProperties" returns unusable result
 ```
-- ```CSSProperties``` looks like
+- ```CSSProperties``` is then defined as:
 ```
-interface CSSProperties extends CSSProperties {
+interface CSSProperties extends CSSPropertiesLow {
   transform?: CSSWideKeyword | any;
   [propertyName: string]: any;
 }
