@@ -2231,12 +2231,6 @@ declare namespace React {
     touchAction?: CSSWideKeyword | any;
 
     /**
-     * CSS transforms allow elements styled with CSS to be transformed in two-dimensional or three-dimensional space.
-     * Using this property, elements can be translated, rotated, scaled, and skewed. The value list may consist of 2D and/or 3D transform values.
-     */
-    transform?: CSSWideKeyword | any;
-
-    /**
      * This property defines the origin of the transformation axes relative to the element to which the transformation is applied.
      */
     transformOrigin?: CSSWideKeyword | any;
@@ -2436,6 +2430,11 @@ declare namespace React {
   }
 
   interface CSSProperties extends CSSPropertiesLow{
+    /**
+     * CSS transforms allow elements styled with CSS to be transformed in two-dimensional or three-dimensional space.
+     * Using this property, elements can be translated, rotated, scaled, and skewed. The value list may consist of 2D and/or 3D transform values.
+     */
+    transform?: CSSWideKeyword | any;
     [propertyName: string]: any;
   }
 
